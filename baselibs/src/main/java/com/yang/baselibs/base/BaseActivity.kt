@@ -5,9 +5,10 @@ import android.os.PersistableBundle
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import com.yang.baselibs.common.AppManager
+import com.yang.baselibs.ext.showToast
 import com.yang.baselibs.utils.StatusBarUtil
 
-open class BaseActivity : AppCompatActivity() {
+open class BaseActivity : AppCompatActivity(), IView {
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
@@ -38,5 +39,25 @@ open class BaseActivity : AppCompatActivity() {
         } else {
             StatusBarUtil.setDarkMode(this)
         }
+    }
+
+    override fun showLoading() {
+        TODO("Not yet implemented")
+    }
+
+    override fun hideLoading() {
+        TODO("Not yet implemented")
+    }
+
+    override fun showDefaultMsg(msg: String) {
+        showToast(msg)
+    }
+
+    override fun showMsg(msg: String) {
+        showToast(msg)
+    }
+
+    override fun showError(errorMsg: String) {
+        showToast(errorMsg)
     }
 }

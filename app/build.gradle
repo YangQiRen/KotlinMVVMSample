@@ -23,6 +23,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -67,4 +70,10 @@ dependencies {
     // picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'jp.wasabeef:picasso-transformations:2.3.1'
+
+    // permission
+    implementation 'com.guolindev.permissionx:permissionx:1.5.0'
+
+    // logger
+    implementation 'com.orhanobut:logger:2.2.0'
 }
