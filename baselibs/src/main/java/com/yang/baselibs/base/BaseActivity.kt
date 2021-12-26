@@ -12,7 +12,6 @@ open class BaseActivity : AppCompatActivity(), IView {
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
-
         AppManager.instance.addActivity(this)
     }
 

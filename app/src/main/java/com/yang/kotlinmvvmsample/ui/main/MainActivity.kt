@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.yang.baselibs.base.BaseActivity
+import com.yang.baselibs.widget.CustomDialog
 import com.yang.kotlinmvvmsample.R
 import com.yang.kotlinmvvmsample.databinding.ActivityMainBinding
 import com.yang.kotlinmvvmsample.utils.PermissionHelper
@@ -18,9 +19,14 @@ class MainActivity : BaseActivity() {
         setStatusBarIcon(false)
 
         mBinding.btn.setOnClickListener {
-            PermissionHelper.requestCameraPermission(this) {
-                showDefaultMsg("相機權限申請成功")
-            }
+            CustomDialog.newBuilder()
+                .setTitle("Hello 你今天過得好嗎")
+                .setContent("聽說這裡是Content")
+                .setCancelAble(false)
+                .setLeftText("Cancel")
+                .setRightText("Confirm")
+                .build()
+                ?.show(supportFragmentManager, "CustomDialog")
         }
     }
 }
