@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.yang.baselibs.base.BaseActivity
+import com.yang.baselibs.utils.hideKeyboard
 import com.yang.baselibs.widget.CustomDialog
 import com.yang.kotlinmvvmsample.R
 import com.yang.kotlinmvvmsample.databinding.ActivityMainBinding
@@ -19,14 +20,15 @@ class MainActivity : BaseActivity() {
         setStatusBarIcon(false)
 
         mBinding.btn.setOnClickListener {
-            CustomDialog.newBuilder()
-                .setTitle("Hello 你今天過得好嗎")
-                .setContent("聽說這裡是Content")
-                .setCancelAble(false)
-                .setLeftText("Cancel")
-                .setRightText("Confirm")
-                .build()
-                ?.show(supportFragmentManager, "CustomDialog")
+            hideKeyboard()
+//            CustomDialog.newBuilder()
+//                .setTitle("Hello 你今天過得好嗎")
+//                .setContent("聽說這裡是Content")
+//                .setCancelAble(false)
+//                .setLeftText("Cancel")
+//                .setRightText("Confirm")
+//                .build()
+//                ?.show(supportFragmentManager, "CustomDialog")
         }
     }
 }
