@@ -2,14 +2,15 @@ package com.yang.baselibs.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.yang.baselibs.base.BaseApplication
 import com.yang.baselibs.base.BaseConstant
+import com.yang.baselibs.config.AppConfig
 
 /*
     SP工具類
  */
 object AppPrefsUtils {
-    private var sp: SharedPreferences = BaseApplication.context.getSharedPreferences(BaseConstant.TABLE_PREFS, Context.MODE_PRIVATE)
+    private var sp: SharedPreferences =
+        AppConfig.getApplication().getSharedPreferences(BaseConstant.TABLE_PREFS, Context.MODE_PRIVATE)
     private var ed: SharedPreferences.Editor
 
     init {
@@ -27,8 +28,8 @@ object AppPrefsUtils {
     /*
         默認 false
      */
-    fun getBoolean(key: String): Boolean {
-        return sp.getBoolean(key, false)
+    fun getBoolean(key: String, default: Boolean): Boolean {
+        return sp.getBoolean(key, default)
     }
 
     /*
@@ -42,8 +43,8 @@ object AppPrefsUtils {
     /*
         默認 ""
      */
-    fun getString(key: String): String? {
-        return sp.getString(key, "")
+    fun getString(key: String, default: String): String {
+        return sp.getString(key, default) ?: default
     }
 
     /*
@@ -57,8 +58,8 @@ object AppPrefsUtils {
     /*
         默認 0
      */
-    fun getInt(key: String): Int {
-        return sp.getInt(key, 0)
+    fun getInt(key: String, default: Int): Int {
+        return sp.getInt(key, default)
     }
 
     /*
@@ -72,8 +73,8 @@ object AppPrefsUtils {
     /*
         默認 0
      */
-    fun getLong(key: String): Long {
-        return sp.getLong(key, 0)
+    fun getLong(key: String, default: Long): Long {
+        return sp.getLong(key, default)
     }
 
     /*

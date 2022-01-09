@@ -1,9 +1,9 @@
 package com.yang.kotlinmvvmsample.ext
 
 import android.util.Log
-import com.yang.kotlinmvvmsample.BuildConfig
+import com.yang.baselibs.config.AppConfig
 
-val debug = BuildConfig.DEBUG
+val debug = AppConfig.debug
 
 const val TAG = "cxz"
 

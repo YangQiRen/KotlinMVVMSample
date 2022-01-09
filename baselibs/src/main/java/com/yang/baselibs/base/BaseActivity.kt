@@ -2,11 +2,15 @@ package com.yang.baselibs.base
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.MenuItem
+import android.view.MotionEvent
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import com.yang.baselibs.common.AppManager
 import com.yang.baselibs.ext.showToast
 import com.yang.baselibs.utils.StatusBarUtil
+import com.yang.baselibs.utils.hideKeyboard
+import com.yang.baselibs.utils.isHideKeyboard
 
 open class BaseActivity : AppCompatActivity(), IView {
 
@@ -41,11 +45,9 @@ open class BaseActivity : AppCompatActivity(), IView {
     }
 
     override fun showLoading() {
-        TODO("Not yet implemented")
     }
 
     override fun hideLoading() {
-        TODO("Not yet implemented")
     }
 
     override fun showDefaultMsg(msg: String) {
@@ -58,5 +60,23 @@ open class BaseActivity : AppCompatActivity(), IView {
 
     override fun showError(errorMsg: String) {
         showToast(errorMsg)
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        if (ev?.action == MotionEvent.ACTION_UP) {
+            val v = currentFocus
+            if (isHideKeyboard(v, ev)) {
+                hideKeyboard(v)
+            }
+        }
+        return super.dispatchTouchEvent(ev)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home ->
+                onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
