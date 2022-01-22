@@ -6,7 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.DialogFragment
-import com.yang.baselibs.widget.OnNoDoubleClickListener
+import com.yang.baselibs.widget.OnSingleClickListener
 import com.yang.kotlinmvvmsample.databinding.DialogPermissionBinding
 
 class PermissionDialog : DialogFragment() {
@@ -85,14 +85,14 @@ class PermissionDialog : DialogFragment() {
             mBinding.tvConfirm.text = rightText
         }
 
-        mBinding.tvConfirm.setOnClickListener(object : OnNoDoubleClickListener() {
-            override fun onNoDoubleClick(v: View?) {
+        mBinding.tvConfirm.setOnClickListener(object : OnSingleClickListener() {
+            override fun onSingleClick(v: View?) {
                 onConfirmClickListener?.invoke()
                 dismiss()
             }
         })
-        mBinding.tvCancel.setOnClickListener(object : OnNoDoubleClickListener() {
-            override fun onNoDoubleClick(v: View?) {
+        mBinding.tvCancel.setOnClickListener(object : OnSingleClickListener() {
+            override fun onSingleClick(v: View?) {
                 onCancelClickListener?.invoke()
                 dismiss()
             }

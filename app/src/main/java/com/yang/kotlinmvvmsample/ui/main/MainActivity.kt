@@ -3,8 +3,8 @@ package com.yang.kotlinmvvmsample.ui.main
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import com.yang.baselibs.base.BaseVMActivity
+import com.yang.baselibs.ext.setOnSingleClickListener
 import com.yang.baselibs.utils.SharedPreferencesUtils
-import com.yang.baselibs.utils.hideKeyboard
 import com.yang.kotlinmvvmsample.R
 import com.yang.kotlinmvvmsample.databinding.ActivityMainBinding
 
@@ -15,6 +15,8 @@ class MainActivity : BaseVMActivity<MainViewModel>() {
     private val preferences by lazy { SharedPreferencesUtils() }
 
     override fun attachVMClass(): Class<MainViewModel> = MainViewModel::class.java
+
+    var count: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,9 +37,9 @@ class MainActivity : BaseVMActivity<MainViewModel>() {
         setStatusBarColor(ContextCompat.getColor(this, R.color.design_default_color_primary_dark))
         setStatusBarIcon(false)
 
-        mBinding.btn.setOnClickListener {
-            hideKeyboard()
-
+//        mBinding.btn.setOnClickListener {
+////            hideKeyboard()
+//
 //            CustomDialog.newBuilder()
 //                .setTitle("Hello 你今天過得好嗎")
 //                .setContent("聽說這裡是Content")
@@ -46,6 +48,11 @@ class MainActivity : BaseVMActivity<MainViewModel>() {
 //                .setRightText("Confirm")
 //                .build()
 //                ?.show(supportFragmentManager, "CustomDialog")
+//        }
+
+        mBinding.btnForTest.setOnSingleClickListener {
+            count++
+            mBinding.textview.text = count.toString()
         }
     }
 

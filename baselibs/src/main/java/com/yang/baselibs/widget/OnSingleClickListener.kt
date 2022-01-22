@@ -2,7 +2,7 @@ package com.yang.baselibs.widget
 
 import android.view.View
 
-abstract class OnNoDoubleClickListener : View.OnClickListener {
+abstract class OnSingleClickListener : View.OnClickListener {
 
     private var mTimeInterval: Long = 1000
     private var mLastClickTime: Long = 0
@@ -16,9 +16,9 @@ abstract class OnNoDoubleClickListener : View.OnClickListener {
         val currentTime = System.currentTimeMillis()
         if (currentTime - mLastClickTime > mTimeInterval) {
             mLastClickTime = currentTime
-            onNoDoubleClick(v)
+            onSingleClick(v)
         }
     }
 
-    abstract fun onNoDoubleClick(v: View?)
+    abstract fun onSingleClick(v: View?)
 }

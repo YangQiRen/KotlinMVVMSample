@@ -108,14 +108,14 @@ class CustomDialog : DialogFragment() {
             mBinding.viewDivider.visibility = View.GONE
         }
 
-        mBinding.tvConfirm.setOnClickListener(object : OnNoDoubleClickListener() {
-            override fun onNoDoubleClick(v: View?) {
+        mBinding.tvConfirm.setOnClickListener(object : OnSingleClickListener() {
+            override fun onSingleClick(v: View?) {
                 onConfirmClickListener?.invoke()
                 dismiss()
             }
         })
-        mBinding.tvCancel.setOnClickListener(object : OnNoDoubleClickListener() {
-            override fun onNoDoubleClick(v: View?) {
+        mBinding.tvCancel.setOnClickListener(object : OnSingleClickListener() {
+            override fun onSingleClick(v: View?) {
                 onCancelClickListener?.invoke()
                 dismiss()
             }
