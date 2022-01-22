@@ -2,10 +2,8 @@ package com.yang.baselibs.base
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewbinding.ViewBinding
-import java.lang.RuntimeException
 
-abstract class BaseVMActivity<VM : BaseViewModel, VB: ViewBinding> : BaseActivity<VB>() {
+abstract class BaseVMActivity<VM : BaseViewModel> : BaseActivity() {
 
     lateinit var mViewModel: VM
 
@@ -16,8 +14,8 @@ abstract class BaseVMActivity<VM : BaseViewModel, VB: ViewBinding> : BaseActivit
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        initVM()
         super.onCreate(savedInstanceState)
+        initVM()
         startObserver()
     }
 

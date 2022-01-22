@@ -2,20 +2,36 @@ package com.yang.kotlinmvvmsample.ui.main
 
 import android.os.Bundle
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
-import com.yang.baselibs.base.BaseActivity
+import com.yang.baselibs.base.BaseVMActivity
 import com.yang.baselibs.utils.SharedPreferencesUtils
 import com.yang.baselibs.utils.hideKeyboard
 import com.yang.kotlinmvvmsample.R
 import com.yang.kotlinmvvmsample.databinding.ActivityMainBinding
 
-class MainActivity : BaseActivity<ActivityMainBinding>() {
+class MainActivity : BaseVMActivity<MainViewModel>() {
+
+    private lateinit var mBinding: ActivityMainBinding
 
     private val preferences by lazy { SharedPreferencesUtils() }
 
-    override fun getViewBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+    override fun attachVMClass(): Class<MainViewModel> = MainViewModel::class.java
 
-    override fun initView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initViewBinding()
+        initView()
+        initData()
+    }
+
+    private fun initViewBinding() {
+        //        mViewModel = MainViewModel()
+        mBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
+        mBinding.lifecycleOwner = this
+//        mBinding.viewmodel = mViewModel
+    }
+
+    private fun initView() {
         setStatusBarColor(ContextCompat.getColor(this, R.color.design_default_color_primary_dark))
         setStatusBarIcon(false)
 
@@ -33,7 +49,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
     }
 
-    override fun initData() {
-        super.initData()
+    private fun initData() {
     }
 }

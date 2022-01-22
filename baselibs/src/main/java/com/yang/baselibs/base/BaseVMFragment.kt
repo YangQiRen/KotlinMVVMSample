@@ -3,9 +3,8 @@ package com.yang.baselibs.base
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewbinding.ViewBinding
 
-abstract class BaseVMFragment<VM : BaseViewModel, VB : ViewBinding> : BaseFragment<VB>() {
+abstract class BaseVMFragment<VM : BaseViewModel> : BaseFragment() {
 
     lateinit var mViewModel: VM
 

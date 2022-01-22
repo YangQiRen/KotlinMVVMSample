@@ -1,36 +1,17 @@
 package com.yang.baselibs.base
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.MenuItem
 import android.view.MotionEvent
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewbinding.ViewBinding
 import com.yang.baselibs.common.AppManager
 import com.yang.baselibs.ext.showToast
 import com.yang.baselibs.utils.StatusBarUtil
 import com.yang.baselibs.utils.hideKeyboard
 import com.yang.baselibs.utils.isHideKeyboard
 
-abstract class BaseActivity<VB: ViewBinding> : AppCompatActivity(), IView {
-
-    lateinit var mBinding: VB
-
-    /**
-     * 佈局綁定
-     */
-    abstract fun getViewBinding(): VB
-
-    /**
-     * 初始化数据
-     */
-    open fun initData() {}
-
-    /**
-     * 初始化 View
-     */
-    abstract fun initView()
+abstract class BaseActivity : AppCompatActivity(), IView {
 
     /**
      * 设置状态栏的背景颜色
@@ -52,13 +33,9 @@ abstract class BaseActivity<VB: ViewBinding> : AppCompatActivity(), IView {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
-        mBinding = getViewBinding()
-        setContentView(mBinding.root)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         AppManager.instance.addActivity(this)
-        initView()
-        initData()
     }
 
     override fun onDestroy() {
