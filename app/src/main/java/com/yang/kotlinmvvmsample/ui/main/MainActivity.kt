@@ -4,15 +4,15 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.yang.baselibs.base.BaseActivity
-import com.yang.baselibs.utils.Preference
+import com.yang.baselibs.utils.SharedPreferencesUtils
 import com.yang.baselibs.utils.hideKeyboard
-import com.yang.baselibs.widget.CustomDialog
 import com.yang.kotlinmvvmsample.R
 import com.yang.kotlinmvvmsample.databinding.ActivityMainBinding
-import com.yang.kotlinmvvmsample.utils.PermissionHelper
 
 class MainActivity : BaseActivity() {
     private lateinit var mBinding: ActivityMainBinding
+
+    private val preferences by lazy { SharedPreferencesUtils() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
