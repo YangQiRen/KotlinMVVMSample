@@ -6,23 +6,31 @@ import android.view.MenuItem
 import android.view.MotionEvent
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewbinding.ViewBinding
 import com.yang.baselibs.common.AppManager
 import com.yang.baselibs.ext.showToast
 import com.yang.baselibs.utils.StatusBarUtil
 import com.yang.baselibs.utils.hideKeyboard
 import com.yang.baselibs.utils.isHideKeyboard
 
-open class BaseActivity : AppCompatActivity(), IView {
+abstract class BaseActivity<VB: ViewBinding> : AppCompatActivity(), IView {
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
-        AppManager.instance.addActivity(this)
-    }
+    lateinit var mBinding: VB
 
-    override fun onDestroy() {
-        super.onDestroy()
-        AppManager.instance.finishActivity(this)
-    }
+    /**
+     * 佈局綁定
+     */
+    abstract fun getViewBinding(): VB
+
+    /**
+     * 初始化数据
+     */
+    open fun initData() {}
+
+    /**
+     * 初始化 View
+     */
+    abstract fun initView()
 
     /**
      * 设置状态栏的背景颜色
@@ -42,6 +50,20 @@ open class BaseActivity : AppCompatActivity(), IView {
         } else {
             StatusBarUtil.setDarkMode(this)
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
+        mBinding = getViewBinding()
+        setContentView(mBinding.root)
+        AppManager.instance.addActivity(this)
+        initView()
+        initData()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AppManager.instance.finishActivity(this)
     }
 
     override fun showLoading() {

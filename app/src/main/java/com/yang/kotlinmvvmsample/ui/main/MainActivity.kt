@@ -9,14 +9,13 @@ import com.yang.baselibs.utils.hideKeyboard
 import com.yang.kotlinmvvmsample.R
 import com.yang.kotlinmvvmsample.databinding.ActivityMainBinding
 
-class MainActivity : BaseActivity() {
-    private lateinit var mBinding: ActivityMainBinding
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private val preferences by lazy { SharedPreferencesUtils() }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+    override fun getViewBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+
+    override fun initView() {
         setStatusBarColor(ContextCompat.getColor(this, R.color.design_default_color_primary_dark))
         setStatusBarIcon(false)
 
@@ -32,5 +31,9 @@ class MainActivity : BaseActivity() {
 //                .build()
 //                ?.show(supportFragmentManager, "CustomDialog")
         }
+    }
+
+    override fun initData() {
+        super.initData()
     }
 }
