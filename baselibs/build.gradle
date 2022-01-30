@@ -3,14 +3,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -26,39 +26,45 @@ android {
         dataBinding true
         viewBinding true
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    implementation rootProject.ext.androidxDeps["androidx-core"]
+    implementation rootProject.ext.androidxDeps["appcompat"]
+    implementation rootProject.ext.androidxDeps["constraintlayout"]
+    implementation rootProject.ext.androidxDeps["material"]
+    testImplementation rootProject.ext.testDeps["junit"]
+    androidTestImplementation rootProject.ext.testDeps["runner"]
+    androidTestImplementation rootProject.ext.testDeps["espresso-core"]
 
     // lifecycle
-    api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
-    api 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
+    api rootProject.ext.androidxDeps["lifecycle-extensions"]
+    api rootProject.ext.androidxDeps["lifecycle-viewmodel"]
+    api rootProject.ext.androidxDeps["lifecycle-livedata"]
 
     // coroutine
-    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
+    api rootProject.ext.androidxDeps["coroutines-core"]
+    api rootProject.ext.androidxDeps["coroutines-android"]
 
     // Preferences DataStore
-    api "androidx.datastore:datastore-preferences:1.0.0"
+    api rootProject.ext.androidxDeps["datastore-preferences"]
 
     // logger
-    api 'com.orhanobut:logger:2.2.0'
+    api rootProject.ext.commonDeps["logger"]
 
-    // okHttp
-    api 'com.squareup.okhttp3:okhttp:4.9.0'
-    // retrofit
-    api 'com.squareup.retrofit2:retrofit:2.9.0'
-    api 'com.squareup.retrofit2:converter-gson:2.9.0'
-    api 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+    // okHttp + retrofit
+    api rootProject.ext.commonDeps["retrofit"]
+    api rootProject.ext.commonDeps["retrofitConverterGson"]
+    api rootProject.ext.commonDeps["okhttp"]
+    api rootProject.ext.commonDeps["logging-interceptor"]
 }
