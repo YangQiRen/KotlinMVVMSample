@@ -72,8 +72,8 @@ abstract class RetrofitFactory<T> {
         return builder.build()
     }
 
-    /*
-        日誌攔截器
+    /**
+     * 日誌攔截器
      */
     private fun initLogInterceptor(): HttpLoggingInterceptor {
         val interceptor = HttpLoggingInterceptor()

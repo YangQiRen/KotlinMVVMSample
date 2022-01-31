@@ -5,7 +5,7 @@ import com.yang.baselibs.http.exception.HttpException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class BaseRepository {
+open class BaseRepository {
 
     suspend fun <T> apiCall(call: suspend () -> BaseResponse<T>): T? {
         return withContext(Dispatchers.IO) {
