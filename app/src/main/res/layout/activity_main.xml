@@ -84,6 +84,20 @@
             android:layout_height="wrap_content"
             android:text="申请权限" />
 
+        <Button
+            android:id="@+id/btnAnim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="測試動畫" />
+
+        <TextView
+            android:id="@+id/tvAnim"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:background="@color/color_F16D58"
+            android:text="測試動畫" />
+
     </LinearLayout>
 
 </layout>

@@ -3,9 +3,11 @@ package com.yang.kotlinmvvmsample.ui.main
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.yang.baselibs.base.BaseVMActivity
 import com.yang.baselibs.ext.setOnSingleClickListener
+import com.yang.baselibs.ext.visibleOrGone
 import com.yang.baselibs.utils.SharedPreferencesUtils
 import com.yang.kotlinmvvmsample.R
 import com.yang.kotlinmvvmsample.databinding.ActivityMainBinding
@@ -64,6 +66,9 @@ class MainActivity : BaseVMActivity<MainViewModel>() {
             PermissionHelper.requestCameraPermission(this) {
                 showDefaultMsg("相机权限申请成功")
             }
+        }
+        mBinding.btnAnim.setOnSingleClickListener {
+            mBinding.tvAnim.visibleOrGone(!mBinding.tvAnim.isVisible, true)
         }
     }
 
