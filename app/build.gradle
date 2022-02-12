@@ -72,6 +72,7 @@ dependencies {
     implementation rootProject.ext.commonDeps["permissionx"]
     implementation rootProject.ext.commonDeps["glide"]
     annotationProcessor rootProject.ext.annotationProcessorDeps["glide-compiler"]
+    implementation rootProject.ext.commonDeps["lottie"]
 
 
 }

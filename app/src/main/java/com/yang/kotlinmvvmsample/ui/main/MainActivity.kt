@@ -12,10 +12,14 @@ import com.yang.baselibs.utils.SharedPreferencesUtils
 import com.yang.kotlinmvvmsample.R
 import com.yang.kotlinmvvmsample.databinding.ActivityMainBinding
 import com.yang.kotlinmvvmsample.utils.PermissionHelper
+import com.yang.kotlinmvvmsample.widgets.LoadingDialog
 
 class MainActivity : BaseVMActivity<MainViewModel>() {
 
     private lateinit var mBinding: ActivityMainBinding
+    private val mDialog by lazy {
+        LoadingDialog(this)
+    }
 
     private val preferences by lazy { SharedPreferencesUtils() }
 
@@ -68,7 +72,7 @@ class MainActivity : BaseVMActivity<MainViewModel>() {
             }
         }
         mBinding.btnAnim.setOnSingleClickListener {
-            mBinding.tvAnim.visibleOrGone(!mBinding.tvAnim.isVisible, true)
+            mBinding.tvAnim.visibleOrGone(mBinding.tvAnim.isVisible.not(), true)
         }
     }
 
@@ -94,5 +98,18 @@ class MainActivity : BaseVMActivity<MainViewModel>() {
                 mBinding.tvResult.text = body.datas[0].title
             }
         }
+    }
+
+    override fun showLoading() {
+        mDialog.showLoading()
+    }
+
+    override fun hideLoading() {
+        mDialog.hideLoading()
+    }
+
+    override fun onDestroy() {
+        hideLoading()
+        super.onDestroy()
     }
 }
