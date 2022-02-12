@@ -5,11 +5,8 @@ import android.view.MenuItem
 import android.view.MotionEvent
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
-import com.yang.baselibs.common.AppManager
 import com.yang.baselibs.ext.showToast
-import com.yang.baselibs.utils.StatusBarUtil
-import com.yang.baselibs.utils.hideKeyboard
-import com.yang.baselibs.utils.isHideKeyboard
+import com.yang.baselibs.utils.*
 
 abstract class BaseActivity : AppCompatActivity(), IView {
 
@@ -35,12 +32,12 @@ abstract class BaseActivity : AppCompatActivity(), IView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AppManager.instance.addActivity(this)
+        ActivityUtil.getInstance().addActivity(this)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        AppManager.instance.finishActivity(this)
+        ActivityUtil.getInstance().removeActivity(this)
     }
 
     override fun showLoading() {

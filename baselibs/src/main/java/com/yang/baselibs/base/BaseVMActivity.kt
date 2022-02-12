@@ -14,8 +14,8 @@ abstract class BaseVMActivity<VM : BaseViewModel> : BaseActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         initVM()
+        super.onCreate(savedInstanceState)
         startObserver()
     }
 
