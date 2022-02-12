@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.yang.baselibs.base.BaseVMActivity
 import com.yang.baselibs.ext.setOnSingleClickListener
+import com.yang.baselibs.ext.visible
 import com.yang.baselibs.ext.visibleOrGone
 import com.yang.baselibs.utils.SharedPreferencesUtils
 import com.yang.kotlinmvvmsample.R
@@ -90,6 +91,7 @@ class MainActivity : BaseVMActivity<MainViewModel>() {
         mViewModel.mBannerList.observe(this) { bannerList ->
             if (bannerList.isNotEmpty()) {
                 mBinding.tvResult.text = bannerList[0].title
+                mBinding.imageView.visible(animate = false)
                 Glide.with(this@MainActivity).load(bannerList[0].imagePath).into(mBinding.imageView)
             }
         }
