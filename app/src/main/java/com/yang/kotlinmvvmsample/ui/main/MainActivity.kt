@@ -10,7 +10,6 @@ import com.yang.baselibs.ext.setOnSingleClickListener
 import com.yang.baselibs.ext.visible
 import com.yang.baselibs.ext.visibleOrGone
 import com.yang.baselibs.utils.SharedPreferencesUtils
-import com.yang.kotlinmvvmsample.R
 import com.yang.kotlinmvvmsample.databinding.ActivityMainBinding
 import com.yang.kotlinmvvmsample.utils.PermissionHelper
 import com.yang.kotlinmvvmsample.widgets.LoadingDialog
@@ -42,8 +41,7 @@ class MainActivity : BaseVMActivity<MainViewModel>() {
     }
 
     private fun initView() {
-        setStatusBarColor(ContextCompat.getColor(this, R.color.design_default_color_primary_dark))
-        setStatusBarIcon(false)
+        setStatusBar(true, ContextCompat.getColor(this, android.R.color.transparent), true)
 
         mBinding.btnLogin.setOnSingleClickListener {
             val username = mBinding.etUsername.text.toString()

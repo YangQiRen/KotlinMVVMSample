@@ -1,34 +1,16 @@
 package com.yang.baselibs.base
 
+import android.R
+import android.os.Build
 import android.os.Bundle
-import android.view.MenuItem
-import android.view.MotionEvent
-import androidx.annotation.ColorInt
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import com.yang.baselibs.ext.showToast
-import com.yang.baselibs.utils.*
+import com.yang.baselibs.utils.ActivityUtil
+import com.yang.baselibs.utils.hideKeyboard
+import com.yang.baselibs.utils.isHideKeyboard
 
 abstract class BaseActivity : AppCompatActivity(), IView {
-
-    /**
-     * 设置状态栏的背景颜色
-     */
-    fun setStatusBarColor(@ColorInt color: Int) {
-        StatusBarUtil.setColor(this, color, 0)
-    }
-
-    /**
-     * 设置状态栏图标的颜色
-     *
-     * @param dark true: 黑色  false: 白色
-     */
-    fun setStatusBarIcon(dark: Boolean) {
-        if (dark) {
-            StatusBarUtil.setLightMode(this)
-        } else {
-            StatusBarUtil.setDarkMode(this)
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +20,35 @@ abstract class BaseActivity : AppCompatActivity(), IView {
     override fun onDestroy() {
         super.onDestroy()
         ActivityUtil.getInstance().removeActivity(this)
+    }
+
+    /**
+     * 設定狀態欄形式<BR>
+     * @param padding 狀態欄是否會壓在畫面上，false:狀態欄跟layout重疊；true:狀態欄跟layout不重疊
+     * @param color 狀態欄底色顏色，可為透明 ContextCompat.getColor(R.color.xxx)
+     * @param backgroundIsLight 狀態欄類型(亮或暗)，true:狀態欄亮字黑色；false:狀態欄暗字白色
+     */
+    open fun setStatusBar(padding: Boolean, color: Int, backgroundIsLight: Boolean) {
+        (findViewById<View>(R.id.content) as ViewGroup).getChildAt(
+            0
+        ).fitsSystemWindows = padding
+
+        val flag: Int = if (padding) {
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        } else {
+            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE//狀態列在layout上方
+        }
+
+        val w = window
+        window.clearFlags(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        w.decorView.systemUiVisibility = flag
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && backgroundIsLight) {
+            val v = w.decorView
+            v.systemUiVisibility = v.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        }
+        w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        w.statusBarColor = color
     }
 
     override fun showLoading() {
