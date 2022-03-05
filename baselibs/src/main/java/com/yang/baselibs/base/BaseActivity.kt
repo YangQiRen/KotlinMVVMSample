@@ -1,6 +1,5 @@
 package com.yang.baselibs.base
 
-import android.R
 import android.os.Build
 import android.os.Bundle
 import android.view.*
@@ -29,7 +28,7 @@ abstract class BaseActivity : AppCompatActivity(), IView {
      * @param backgroundIsLight 狀態欄類型(亮或暗)，true:狀態欄亮字黑色；false:狀態欄暗字白色
      */
     open fun setStatusBar(padding: Boolean, color: Int, backgroundIsLight: Boolean) {
-        (findViewById<View>(R.id.content) as ViewGroup).getChildAt(
+        (findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(
             0
         ).fitsSystemWindows = padding
 
@@ -40,7 +39,7 @@ abstract class BaseActivity : AppCompatActivity(), IView {
         }
 
         val w = window
-        window.clearFlags(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        window.clearFlags(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
         w.decorView.systemUiVisibility = flag
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && backgroundIsLight) {
