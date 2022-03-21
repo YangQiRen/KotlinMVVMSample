@@ -3,14 +3,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId "com.yang.kotlinmvvmsample"
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        minSdkVersion 21
+        targetSdkVersion 31
+        versionCode 1
+        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,43 +37,12 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(':baselibs')
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    // dependencies are defined in ext arrays in coroutines-codelab/build.gradle
+    implementation libraries
+    kapt librariesKapt
+    debugImplementation librariesDebug
 
-    implementation rootProject.ext.androidxDeps["androidx-core"]
-    implementation rootProject.ext.androidxDeps["appcompat"]
-    implementation rootProject.ext.androidxDeps["constraintlayout"]
-    implementation rootProject.ext.androidxDeps["material"]
-    testImplementation rootProject.ext.testDeps["junit"]
-    androidTestImplementation rootProject.ext.testDeps["runner"]
-    androidTestImplementation rootProject.ext.testDeps["espresso-core"]
-
-    // lifecycle
-    implementation rootProject.ext.androidxDeps["viewmodel-savedstate"]
-    implementation rootProject.ext.androidxDeps["lifecycle-viewmodel"]
-    implementation rootProject.ext.androidxDeps["lifecycle-extensions"]
-    implementation rootProject.ext.androidxDeps["lifecycle-livedata"]
-
-    // coroutines
-    implementation rootProject.ext.androidxDeps["coroutines-core"]
-    implementation rootProject.ext.androidxDeps["coroutines-android"]
-
-    // navigation
-    implementation rootProject.ext.androidxDeps["navigation-fragment"]
-    implementation rootProject.ext.androidxDeps["navigation-ui"]
-
-    // 網路控制相關
-    implementation rootProject.ext.commonDeps["retrofit"]
-    implementation rootProject.ext.commonDeps["retrofitConverterGson"]
-    implementation rootProject.ext.commonDeps["okhttp"]
-    implementation rootProject.ext.commonDeps["logging-interceptor"]
-
-    implementation rootProject.ext.commonDeps["logger"]
-    implementation rootProject.ext.commonDeps["gson"]
-    implementation rootProject.ext.commonDeps["permissionx"]
-    implementation rootProject.ext.commonDeps["glide"]
-    annotationProcessor rootProject.ext.annotationProcessorDeps["glide-compiler"]
-    implementation rootProject.ext.commonDeps["lottie"]
-
-
+    testImplementation testLibraries
+    androidTestImplementation androidTestLibraries
 }
 

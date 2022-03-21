@@ -34,34 +34,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    
+    // dependencies are defined in ext arrays in coroutines-codelab/build.gradle
+    implementation libraries
+    kapt librariesKapt
+    debugImplementation librariesDebug
 
-    implementation rootProject.ext.androidxDeps["androidx-core"]
-    implementation rootProject.ext.androidxDeps["appcompat"]
-    implementation rootProject.ext.androidxDeps["constraintlayout"]
-    implementation rootProject.ext.androidxDeps["material"]
-    testImplementation rootProject.ext.testDeps["junit"]
-    androidTestImplementation rootProject.ext.testDeps["runner"]
-    androidTestImplementation rootProject.ext.testDeps["espresso-core"]
-
-    // lifecycle
-    api rootProject.ext.androidxDeps["lifecycle-extensions"]
-    api rootProject.ext.androidxDeps["lifecycle-viewmodel"]
-    api rootProject.ext.androidxDeps["lifecycle-livedata"]
-
-    // coroutine
-    api rootProject.ext.androidxDeps["coroutines-core"]
-    api rootProject.ext.androidxDeps["coroutines-android"]
-
-    // Preferences DataStore
-    api rootProject.ext.androidxDeps["datastore-preferences"]
-
-    // logger
-    api rootProject.ext.commonDeps["logger"]
-
-    // okHttp + retrofit
-    api rootProject.ext.commonDeps["retrofit"]
-    api rootProject.ext.commonDeps["retrofitConverterGson"]
-    api rootProject.ext.commonDeps["okhttp"]
-    api rootProject.ext.commonDeps["logging-interceptor"]
+    testImplementation testLibraries
+    androidTestImplementation androidTestLibraries
 }
