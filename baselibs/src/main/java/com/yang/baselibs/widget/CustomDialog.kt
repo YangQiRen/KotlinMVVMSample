@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.yang.baselibs.databinding.DialogCustomBinding
+import com.yang.baselibs.ext.setOnSingleClickListener
 
 class CustomDialog : DialogFragment() {
 
@@ -108,18 +109,15 @@ class CustomDialog : DialogFragment() {
             mBinding.viewDivider.visibility = View.GONE
         }
 
-        mBinding.tvConfirm.setOnClickListener(object : OnSingleClickListener() {
-            override fun onSingleClick(v: View?) {
-                onConfirmClickListener?.invoke()
-                dismiss()
-            }
-        })
-        mBinding.tvCancel.setOnClickListener(object : OnSingleClickListener() {
-            override fun onSingleClick(v: View?) {
-                onCancelClickListener?.invoke()
-                dismiss()
-            }
-        })
+        mBinding.tvConfirm.setOnSingleClickListener {
+            onConfirmClickListener?.invoke()
+            dismiss()
+        }
+
+        mBinding.tvCancel.setOnSingleClickListener {
+            onCancelClickListener?.invoke()
+            dismiss()
+        }
     }
 
     class Builder {
