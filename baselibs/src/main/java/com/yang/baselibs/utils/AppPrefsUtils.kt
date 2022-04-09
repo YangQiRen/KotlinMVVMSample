@@ -11,11 +11,7 @@ import com.yang.baselibs.config.AppConfig
 object AppPrefsUtils {
     private var sp: SharedPreferences =
         AppConfig.getApplication().getSharedPreferences(BaseConstant.TABLE_PREFS, Context.MODE_PRIVATE)
-    private var ed: SharedPreferences.Editor
-
-    init {
-        ed = sp.edit()
-    }
+    private var ed: SharedPreferences.Editor = sp.edit()
 
     /*
         Boolean數據

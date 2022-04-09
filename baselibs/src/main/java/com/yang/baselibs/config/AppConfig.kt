@@ -1,6 +1,7 @@
 package com.yang.baselibs.config
 
 import android.app.Application
+import com.yang.baselibs.BuildConfig
 
 object AppConfig {
 
@@ -16,6 +17,7 @@ object AppConfig {
      */
     fun init(application: Application) {
         this.application = application
+        initDebug()
     }
 
     fun getApplication(): Application {
@@ -25,7 +27,12 @@ object AppConfig {
         return application!!
     }
 
-    fun openDebug() {
-        debug = true
+    /**
+     * 初始化debug狀態
+     */
+    private fun initDebug() {
+        if (BuildConfig.DEBUG) {
+            debug = true
+        }
     }
 }

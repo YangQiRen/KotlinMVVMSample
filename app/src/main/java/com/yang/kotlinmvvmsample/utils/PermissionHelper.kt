@@ -8,8 +8,8 @@ import android.os.Binder
 import android.os.Build
 import androidx.core.app.AppOpsManagerCompat
 import androidx.fragment.app.FragmentActivity
-import com.orhanobut.logger.Logger
 import com.permissionx.guolindev.PermissionX
+import com.yang.baselibs.utils.LogUtil
 import com.yang.kotlinmvvmsample.widgets.PermissionDialog
 
 object PermissionHelper {
@@ -22,7 +22,7 @@ object PermissionHelper {
             PermissionX.init(activity)
                 .permissions(Manifest.permission.CAMERA)
                 .onExplainRequestReason { scope, deniedList ->
-                    Logger.e("onExplainRequestReason:$scope,$deniedList")
+                    LogUtil.e("onExplainRequestReason:$scope,$deniedList")
                     showPermissionDialog(
                         activity,
                         "為了保證您正常使用此功能，需要獲取您的相機使用權限，請允許。",
@@ -32,7 +32,7 @@ object PermissionHelper {
                     )
                 }
                 .onForwardToSettings { scope, deniedList ->
-                    Logger.e("onForwardToSettings:$scope,$deniedList")
+                    LogUtil.e("onForwardToSettings:$scope,$deniedList")
                     showPermissionDialog(
                         activity,
                         "未取得您的相機使用權限，此功能無法使用。請前往應用權限設置打開權限。",
@@ -42,7 +42,7 @@ object PermissionHelper {
                     )
                 }
                 .request { allGranted, grantedList, deniedList ->
-                    Logger.e("$allGranted,$grantedList,$deniedList")
+                    LogUtil.e("$allGranted,$grantedList,$deniedList")
                     if (allGranted) {
                         requestSuccess?.invoke()
                     }

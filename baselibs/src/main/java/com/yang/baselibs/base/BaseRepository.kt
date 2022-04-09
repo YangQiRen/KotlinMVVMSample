@@ -7,6 +7,9 @@ import kotlinx.coroutines.withContext
 
 open class BaseRepository {
 
+    /**
+     * 在IO thread呼叫api
+     */
     suspend fun <T> apiCall(call: suspend () -> BaseResponse<T>): T? {
         return withContext(Dispatchers.IO) {
             val response = call.invoke()
@@ -14,6 +17,12 @@ open class BaseRepository {
         }
     }
 
+    /**
+     * 判斷errorCode是否成功
+     *
+     * @return data: T
+     * @throws HttpException
+     */
     fun <T> executeResponse(response: BaseResponse<T>): T? {
         when (response.errorCode) {
             HttpErrorCode.SUCCESS -> {

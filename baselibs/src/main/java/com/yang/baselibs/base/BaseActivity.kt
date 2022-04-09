@@ -50,9 +50,15 @@ abstract class BaseActivity : AppCompatActivity(), IView {
         w.statusBarColor = color
     }
 
+    /**
+     * 可以將common loading dialog寫在此處，也可以覆寫自定義
+     */
     override fun showLoading() {
     }
 
+    /**
+     * 可以將common loading dialog寫在此處，也可以覆寫自定義
+     */
     override fun hideLoading() {
     }
 
@@ -68,6 +74,9 @@ abstract class BaseActivity : AppCompatActivity(), IView {
         showToast(errorMsg)
     }
 
+    /**
+     * 點擊輸入框外隱藏鍵盤
+     */
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         if (ev?.action == MotionEvent.ACTION_UP) {
             val v = currentFocus
@@ -78,6 +87,9 @@ abstract class BaseActivity : AppCompatActivity(), IView {
         return super.dispatchTouchEvent(ev)
     }
 
+    /**
+     * 點擊home鍵->返回
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home ->

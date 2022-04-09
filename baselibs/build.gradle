@@ -34,7 +34,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    
+
     // dependencies are defined in ext arrays in coroutines-codelab/build.gradle
     implementation libraries
     kapt librariesKapt

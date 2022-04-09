@@ -1,15 +1,15 @@
 package com.yang.baselibs.utils
 
-import android.util.Log
+import com.orhanobut.logger.Logger
 import com.yang.baselibs.config.AppConfig
 
-object NLog {
+object LogUtil {
 
     private var debug = AppConfig.debug
 
     fun i(tag: String, content: String) {
         if (debug) {
-            Log.i(tag, content)
+            Logger.i(tag, content)
         }
     }
 
@@ -19,7 +19,7 @@ object NLog {
 
     fun v(tag: String, content: String) {
         if (debug) {
-            Log.v(tag, content)
+            Logger.v(tag, content)
         }
     }
 
@@ -29,7 +29,7 @@ object NLog {
 
     fun d(tag: String, content: String) {
         if (debug) {
-            Log.d(tag, content)
+            Logger.d(tag, content)
         }
     }
 
@@ -39,7 +39,7 @@ object NLog {
 
     fun w(tag: String, content: String) {
         if (debug) {
-            Log.w(tag, content)
+            Logger.w(tag, content)
         }
     }
 
@@ -49,7 +49,7 @@ object NLog {
 
     fun e(tag: String, content: String) {
         if (debug) {
-            Log.e(tag, content)
+            Logger.e(tag, content)
         }
     }
 

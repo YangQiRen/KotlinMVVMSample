@@ -10,7 +10,9 @@ abstract class BaseVMFragment<VM : BaseViewModel> : BaseFragment() {
 
     abstract fun attachVMClass(): Class<VM>?
 
-    open fun startObserver() {}
+    open fun startObserver() {
+        subscribeLoadingDialog(mViewModel)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initVM()
@@ -23,7 +25,7 @@ abstract class BaseVMFragment<VM : BaseViewModel> : BaseFragment() {
             throw RuntimeException("ViewModel must not be null.")
         }
         attachVMClass()?.let {
-            mViewModel = ViewModelProvider(this).get(it)
+            mViewModel = ViewModelProvider(this)[it]
             lifecycle.addObserver(mViewModel)
         }
     }

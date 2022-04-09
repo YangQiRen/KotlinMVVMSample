@@ -38,6 +38,12 @@ fun View.visibleOrGone(show: Boolean, animate: Boolean = true) {
     if (show) visible(animate) else gone(animate)
 }
 
+/**
+ * 隱藏方法
+ *
+ * @param hidingStrategy INVISIBLE or GONE
+ * @param animate 是否要動畫
+ */
 private fun View.hide(hidingStrategy: Int, animate: Boolean = true) {
     if (animate) {
         animate().alpha(0f).setDuration(300).setListener(object : AnimatorListenerAdapter() {

@@ -4,9 +4,9 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.orhanobut.logger.Logger
 import com.yang.baselibs.ext.showToast
 import com.yang.baselibs.http.exception.HttpException
+import com.yang.baselibs.utils.LogUtil
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,12 +16,16 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
 
     val showLoading = MutableLiveData<Boolean>()
 
+    /**
+     * 處理異常狀況
+     * errorCode=0以外都會進異常，也可以自行定義errorCode跟CustomException讓他單純處理onException
+     */
     fun launchOnUI(
         block: suspend CoroutineScope.() -> Unit,
         onException: ((Throwable) -> Unit)? = null
     ) {
         val handler = CoroutineExceptionHandler { _, throwable ->
-            Logger.e(throwable, throwable.message ?: "launchOnUI")
+            LogUtil.e("CoroutineExceptionHandler ${throwable.message ?: "launchOnUI"}" )
             showLoading.postValue(false)
             when (throwable) {
                 is HttpException -> {

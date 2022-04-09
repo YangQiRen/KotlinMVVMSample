@@ -24,7 +24,7 @@ abstract class BaseVMActivity<VM : BaseViewModel> : BaseActivity() {
             throw RuntimeException("ViewModel must not be null.")
         }
         attachVMClass()?.let {
-            mViewModel = ViewModelProvider(this).get(it)
+            mViewModel = ViewModelProvider(this)[it]
             lifecycle.addObserver(mViewModel)
         }
     }
