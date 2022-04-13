@@ -76,6 +76,3 @@ fun Context.getCompatColor(@ColorRes colorInt: Int) : Int = ContextCompat.getCol
  * get drawable
  */
 fun Context.getCompatDrawable(@DrawableRes drawableRes: Int) : Drawable? = ContextCompat.getDrawable(this, drawableRes)
-
-
-
