@@ -3,17 +3,37 @@ package com.yang.baselibs.base
 import android.os.Build
 import android.os.Bundle
 import android.view.*
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import com.yang.baselibs.ext.showToast
 import com.yang.baselibs.utils.ActivityUtil
 import com.yang.baselibs.utils.hideKeyboard
 import com.yang.baselibs.utils.isHideKeyboard
 
-abstract class BaseActivity : AppCompatActivity(), IView {
+abstract class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel> : AppCompatActivity() {
+    lateinit var viewModel: VM
+    lateinit var binding: DB
+
+    @get:LayoutRes
+    abstract val layoutId: Int
+
+    abstract fun getVM(): VM
+
+    abstract fun bindVM(binding: DB, viewModel: VM)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivityUtil.getInstance().addActivity(this)
+        binding = DataBindingUtil.setContentView(this, layoutId)
+        viewModel = getVM()
+        bindVM(binding, viewModel)
+        with(viewModel) {
+            showLoading.observe(this@BaseActivity) { isShow ->
+                if (isShow) showLoading() else hideLoading()
+            }
+        }
     }
 
     override fun onDestroy() {
@@ -53,25 +73,13 @@ abstract class BaseActivity : AppCompatActivity(), IView {
     /**
      * 可以將common loading dialog寫在此處，也可以覆寫自定義
      */
-    override fun showLoading() {
+    open fun showLoading() {
     }
 
     /**
      * 可以將common loading dialog寫在此處，也可以覆寫自定義
      */
-    override fun hideLoading() {
-    }
-
-    override fun showDefaultMsg(msg: String) {
-        showToast(msg)
-    }
-
-    override fun showMsg(msg: String) {
-        showToast(msg)
-    }
-
-    override fun showError(errorMsg: String) {
-        showToast(errorMsg)
+    open fun hideLoading() {
     }
 
     /**
