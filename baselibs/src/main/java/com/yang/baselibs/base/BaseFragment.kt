@@ -21,6 +21,8 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment
 
     abstract fun bindVM(binding: DB, vm: VM)
 
+    private val baseDialog by lazy { BaseLoadingDialog(requireContext()) }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,12 +51,14 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment
      * 可以將common loading dialog寫在此處，也可以覆寫自定義
      */
     open fun showLoading() {
+        baseDialog.showLoading()
     }
 
     /**
      * 可以將common loading dialog寫在此處，也可以覆寫自定義
      */
     open fun hideLoading() {
+        baseDialog.hideLoading()
     }
 
 

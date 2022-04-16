@@ -23,6 +23,8 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel> : AppCompa
 
     abstract fun bindVM(binding: DB, viewModel: VM)
 
+    private val baseDialog by lazy { BaseLoadingDialog(this) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivityUtil.getInstance().addActivity(this)
@@ -74,12 +76,14 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel> : AppCompa
      * 可以將common loading dialog寫在此處，也可以覆寫自定義
      */
     open fun showLoading() {
+        baseDialog.showLoading()
     }
 
     /**
      * 可以將common loading dialog寫在此處，也可以覆寫自定義
      */
     open fun hideLoading() {
+        baseDialog.hideLoading()
     }
 
     /**
