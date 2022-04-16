@@ -1,4 +1,4 @@
-package com.yang.kotlinmvvmsample.widgets
+package com.yang.kotlinmvvmsample.widget
 
 import android.content.DialogInterface
 import android.graphics.Color

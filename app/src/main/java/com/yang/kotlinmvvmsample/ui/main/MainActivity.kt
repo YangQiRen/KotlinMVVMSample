@@ -17,9 +17,9 @@ import com.yang.baselibs.ext.visible
 import com.yang.baselibs.ext.visibleOrGone
 import com.yang.baselibs.utils.SharedPreferencesUtils
 import com.yang.kotlinmvvmsample.databinding.ActivityMainBinding
-import com.yang.kotlinmvvmsample.utils.PermissionHelper
-import com.yang.kotlinmvvmsample.utils.hasPermissions
-import com.yang.kotlinmvvmsample.widgets.LoadingDialog
+import com.yang.kotlinmvvmsample.util.PermissionHelper
+import com.yang.kotlinmvvmsample.util.hasPermissions
+import com.yang.kotlinmvvmsample.widget.LoadingDialog
 
 class MainActivity : BaseVMActivity<MainViewModel>() {
     // permissions

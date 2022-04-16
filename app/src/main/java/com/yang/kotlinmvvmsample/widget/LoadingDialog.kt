@@ -1,4 +1,4 @@
-package com.yang.kotlinmvvmsample.widgets
+package com.yang.kotlinmvvmsample.widget
 
 import android.app.Dialog
 import android.content.Context

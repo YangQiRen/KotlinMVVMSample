@@ -1,4 +1,4 @@
-package com.yang.kotlinmvvmsample.utils
+package com.yang.kotlinmvvmsample.util
 
 import android.content.ActivityNotFoundException
 import android.content.ComponentName

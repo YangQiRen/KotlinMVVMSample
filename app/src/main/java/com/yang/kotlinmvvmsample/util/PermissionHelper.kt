@@ -1,4 +1,4 @@
-package com.yang.kotlinmvvmsample.utils
+package com.yang.kotlinmvvmsample.util
 
 import android.Manifest
 import android.app.AppOpsManager
@@ -10,7 +10,7 @@ import androidx.core.app.AppOpsManagerCompat
 import androidx.fragment.app.FragmentActivity
 import com.permissionx.guolindev.PermissionX
 import com.yang.baselibs.utils.LogUtil
-import com.yang.kotlinmvvmsample.widgets.PermissionDialog
+import com.yang.kotlinmvvmsample.widget.PermissionDialog
 
 object PermissionHelper {
 

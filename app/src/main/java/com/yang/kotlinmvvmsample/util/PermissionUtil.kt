@@ -1,4 +1,4 @@
-package com.yang.kotlinmvvmsample.utils
+package com.yang.kotlinmvvmsample.util
 
 import android.content.Context
 import android.content.pm.PackageManager
