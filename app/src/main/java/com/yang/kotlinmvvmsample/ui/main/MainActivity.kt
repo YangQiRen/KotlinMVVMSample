@@ -118,8 +118,6 @@ class MainActivity : BaseVMActivity<MainViewModel>() {
      * 設置權限
      */
     private fun setupPermission() {
-//        permissionUtil = PermissionUtil(this, permissionList, PermissionsRequestCode)
-//        permissionUtil.checkPermissions()
         if (!hasPermissions(this, permissionList)) {
             permReqLauncher.launch(permissionList)
         }
@@ -164,16 +162,15 @@ class MainActivity : BaseVMActivity<MainViewModel>() {
      * 要求前去app setting打開權限
      */
     private fun showAskPermissionAlertDialog() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Need permission(s)")
-        builder.setMessage("Some permissions are required to do the task.")
-        builder.setPositiveButton("OK") { dialog, which ->
-            launchToAppDetail()
-            dialog.dismiss()
-        }
-        builder.setNeutralButton("Cancel", null)
-        val dialog = builder.create()
-        dialog.show()
+        AlertDialog.Builder(this).apply {
+            setTitle("Need permission(s)")
+            setMessage("Some permissions are required to do the task.")
+            setPositiveButton("OK") { dialog, which ->
+                launchToAppDetail()
+                dialog.dismiss()
+            }
+            setNeutralButton("Cancel", null)
+        }.create().show()
     }
 
     /**
