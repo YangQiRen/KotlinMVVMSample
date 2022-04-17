@@ -1,14 +1,21 @@
 package com.yang.kotlinmvvmsample.ui.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.yang.baselibs.base.BaseViewModel
+import com.yang.kotlinmvvmsample.data.api.CharacterRetrofit
+import com.yang.kotlinmvvmsample.data.model.Character
+import com.yang.kotlinmvvmsample.data.paging.datasource.CharactersPagingDataSource
+import kotlinx.coroutines.flow.Flow
 
 class CharactersViewModel : BaseViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
+    val characters: Flow<PagingData<Character>> =
+        Pager(config = PagingConfig(pageSize = 20, prefetchDistance = 2),
+            pagingSourceFactory = { CharactersPagingDataSource(CharacterRetrofit.service) }
+        ).flow.cachedIn(viewModelScope)
+
 }

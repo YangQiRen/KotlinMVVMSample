@@ -10,6 +10,7 @@ import com.yang.baselibs.utils.LogUtil
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 open class BaseViewModel : ViewModel(), LifecycleObserver {
@@ -36,6 +37,20 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
         }
         viewModelScope.launch(Dispatchers.Main + handler) {
             block()
+        }
+    }
+
+    inline fun <T> launchPagingAsync(
+        crossinline execute: suspend () -> Flow<T>,
+        crossinline onSuccess: (Flow<T>) -> Unit
+    ) {
+        viewModelScope.launch {
+            try {
+                val result = execute()
+                onSuccess(result)
+            } catch (ex: Exception) {
+                LogUtil.e(ex.toString())
+            }
         }
     }
 }

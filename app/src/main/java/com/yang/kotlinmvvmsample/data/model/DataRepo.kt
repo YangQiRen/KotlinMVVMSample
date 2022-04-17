@@ -1,4 +1,4 @@
-package com.yang.kotlinmvvmsample.model.bean
+package com.yang.kotlinmvvmsample.data.model
 
 data class Banner(
     val desc: String,

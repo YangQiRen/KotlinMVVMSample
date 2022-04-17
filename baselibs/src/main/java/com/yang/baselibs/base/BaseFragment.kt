@@ -8,6 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.yang.baselibs.ext.showToast
 
 abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
@@ -19,7 +20,7 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment
 
     abstract fun getVM(): VM
 
-    abstract fun bindVM(binding: DB, vm: VM)
+    abstract fun bindVM(binding: DB, viewModel: VM)
 
     private val baseDialog by lazy { BaseLoadingDialog(requireContext()) }
 
@@ -61,5 +62,10 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment
         baseDialog.hideLoading()
     }
 
+    fun launchOnLifecycleScope(execute: suspend () -> Unit) {
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            execute()
+        }
+    }
 
 }

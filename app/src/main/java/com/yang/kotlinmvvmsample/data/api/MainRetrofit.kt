@@ -1,4 +1,4 @@
-package com.yang.kotlinmvvmsample.model.api
+package com.yang.kotlinmvvmsample.data.api
 
 import com.yang.baselibs.http.RetrofitFactory
 

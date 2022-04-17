@@ -2,10 +2,10 @@ package com.yang.kotlinmvvmsample.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import com.yang.baselibs.base.BaseViewModel
-import com.yang.kotlinmvvmsample.model.bean.Banner
-import com.yang.kotlinmvvmsample.model.bean.CollectionArticle
-import com.yang.kotlinmvvmsample.model.bean.CollectionResponseBody
-import com.yang.kotlinmvvmsample.model.repository.MainRepository
+import com.yang.kotlinmvvmsample.data.model.Banner
+import com.yang.kotlinmvvmsample.data.model.CollectionArticle
+import com.yang.kotlinmvvmsample.data.model.CollectionResponseBody
+import com.yang.kotlinmvvmsample.data.repository.MainRepository
 
 class MainViewModel : BaseViewModel() {
 

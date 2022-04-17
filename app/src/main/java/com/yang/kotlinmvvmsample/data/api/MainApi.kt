@@ -1,9 +1,9 @@
-package com.yang.kotlinmvvmsample.model.api
+package com.yang.kotlinmvvmsample.data.api
 
 import com.yang.baselibs.base.BaseResponse
-import com.yang.kotlinmvvmsample.model.bean.Banner
-import com.yang.kotlinmvvmsample.model.bean.CollectionArticle
-import com.yang.kotlinmvvmsample.model.bean.CollectionResponseBody
+import com.yang.kotlinmvvmsample.data.model.Banner
+import com.yang.kotlinmvvmsample.data.model.CollectionArticle
+import com.yang.kotlinmvvmsample.data.model.CollectionResponseBody
 import retrofit2.http.*
 
 interface MainApi {

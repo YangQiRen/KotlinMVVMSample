@@ -28,6 +28,8 @@ buildscript {
         def lottie_version = '4.2.1'
         def junit_version = '4.13.2'
         def espresso_version = '3.4.0'
+        def paging_version = "3.1.1"
+        def swiperefreshlayout_version = "1.2.0-alpha01"
 
 
         libraries = [
@@ -73,6 +75,8 @@ buildscript {
                 "com.permissionx.guolindev:permissionx:$permission_x_version",
                 "androidx.datastore:datastore-preferences:$datastore_version",
                 "com.orhanobut:logger:$logger_version",
+                "androidx.paging:paging-runtime-ktx:$paging_version",
+                "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefreshlayout_version",
         ]
         librariesKapt = [
                 "com.github.bumptech.glide:compiler:$glide_version"

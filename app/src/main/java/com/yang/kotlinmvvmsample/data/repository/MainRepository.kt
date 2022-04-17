@@ -1,10 +1,10 @@
-package com.yang.kotlinmvvmsample.model.repository
+package com.yang.kotlinmvvmsample.data.repository
 
 import com.yang.baselibs.base.BaseRepository
-import com.yang.kotlinmvvmsample.model.api.MainRetrofit
-import com.yang.kotlinmvvmsample.model.bean.Banner
-import com.yang.kotlinmvvmsample.model.bean.CollectionArticle
-import com.yang.kotlinmvvmsample.model.bean.CollectionResponseBody
+import com.yang.kotlinmvvmsample.data.api.MainRetrofit
+import com.yang.kotlinmvvmsample.data.model.Banner
+import com.yang.kotlinmvvmsample.data.model.CollectionArticle
+import com.yang.kotlinmvvmsample.data.model.CollectionResponseBody
 
 class MainRepository : BaseRepository() {
 
