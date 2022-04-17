@@ -94,9 +94,16 @@
             android:id="@+id/tvAnim"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:gravity="center"
             android:background="@color/color_F16D58"
+            android:gravity="center"
             android:text="測試動畫" />
+
+        <Button
+            android:id="@+id/btnHomePage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="go to home page"
+            android:textAllCaps="false" />
 
     </LinearLayout>
 

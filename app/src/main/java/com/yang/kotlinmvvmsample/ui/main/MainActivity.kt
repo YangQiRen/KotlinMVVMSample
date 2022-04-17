@@ -19,6 +19,7 @@ import com.yang.baselibs.ext.visibleOrGone
 import com.yang.baselibs.utils.SharedPreferencesUtils
 import com.yang.kotlinmvvmsample.R
 import com.yang.kotlinmvvmsample.databinding.ActivityMainBinding
+import com.yang.kotlinmvvmsample.ui.HomeActivity
 import com.yang.kotlinmvvmsample.util.hasPermissions
 import com.yang.kotlinmvvmsample.widget.LoadingDialog
 
@@ -109,6 +110,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         binding.btnAnim.setOnSingleClickListener {
             binding.tvAnim.visibleOrGone(binding.tvAnim.isVisible.not(), true)
         }
+        binding.btnHomePage.setOnSingleClickListener { startActivity(HomeActivity.getIntent(this)) }
     }
 
     /**
