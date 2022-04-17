@@ -19,7 +19,6 @@ import com.yang.baselibs.ext.visibleOrGone
 import com.yang.baselibs.utils.SharedPreferencesUtils
 import com.yang.kotlinmvvmsample.R
 import com.yang.kotlinmvvmsample.databinding.ActivityMainBinding
-import com.yang.kotlinmvvmsample.util.PermissionHelper
 import com.yang.kotlinmvvmsample.util.hasPermissions
 import com.yang.kotlinmvvmsample.widget.LoadingDialog
 
@@ -105,9 +104,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
             viewModel.getCollectList(0)
         }
         binding.btnPermission.setOnSingleClickListener {
-            PermissionHelper.requestCameraPermission(this) {
-                showToast("相机权限申请成功")
-            }
+            setupPermission()
         }
         binding.btnAnim.setOnSingleClickListener {
             binding.tvAnim.visibleOrGone(binding.tvAnim.isVisible.not(), true)
