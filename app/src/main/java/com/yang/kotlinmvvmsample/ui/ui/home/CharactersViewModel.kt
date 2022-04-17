@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.yang.baselibs.base.BaseViewModel
 
-class HomeViewModel : BaseViewModel() {
+class CharactersViewModel : BaseViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"
