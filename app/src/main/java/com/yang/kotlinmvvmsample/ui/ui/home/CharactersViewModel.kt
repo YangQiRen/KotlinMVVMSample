@@ -1,21 +1,29 @@
 package com.yang.kotlinmvvmsample.ui.ui.home
 
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.yang.baselibs.base.BaseViewModel
-import com.yang.kotlinmvvmsample.data.api.CharacterRetrofit
 import com.yang.kotlinmvvmsample.data.model.Character
-import com.yang.kotlinmvvmsample.data.paging.datasource.CharactersPagingDataSource
+import com.yang.kotlinmvvmsample.data.repository.CharactersRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
 class CharactersViewModel : BaseViewModel() {
 
-    val characters: Flow<PagingData<Character>> =
-        Pager(config = PagingConfig(pageSize = 20, prefetchDistance = 2),
-            pagingSourceFactory = { CharactersPagingDataSource(CharacterRetrofit.service) }
-        ).flow.cachedIn(viewModelScope)
+    private val repository by lazy {
+        CharactersRepository()
+    }
 
+    var charactersFlow: Flow<PagingData<Character>> = flowOf()
+
+    init {
+        getAllCharacters()
+    }
+
+    private fun getAllCharacters() = launchPagingAsync({
+        repository.getAllCharacters().cachedIn(viewModelScope)
+    }, {
+        charactersFlow = it
+    })
 }

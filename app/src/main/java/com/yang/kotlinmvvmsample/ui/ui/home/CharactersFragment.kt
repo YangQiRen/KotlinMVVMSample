@@ -26,10 +26,8 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharactersVie
             rvCharacters.adapter = characterAdapter
         }
 
-        with(viewModel) {
-            launchOnLifecycleScope {
-                characters.collectLatest { characterAdapter.submitData(it) }
-            }
+        launchOnLifecycleScope {
+            viewModel.charactersFlow.collectLatest { characterAdapter.submitData(it) }
         }
     }
 }
