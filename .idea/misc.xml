@@ -20,6 +20,7 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19429347826086957" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.19429347826086957" />
         <entry key="app/src/main/res/layout/item_character.xml" value="0.19429347826086957" />
+        <entry key="app/src/main/res/layout/item_network_state.xml" value="0.21448822021484373" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.24895833333333334" />
         <entry key="baselibs/src/main/res/layout/dialog_base_loading.xml" value="0.19429347826086957" />
         <entry key="baselibs/src/main/res/layout/dialog_custom.xml" value="0.1693840579710145" />

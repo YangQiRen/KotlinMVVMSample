@@ -2,8 +2,10 @@ package com.yang.kotlinmvvmsample.ui.ui.home
 
 import androidx.fragment.app.viewModels
 import com.yang.baselibs.base.BaseFragment
+import com.yang.baselibs.utils.LogUtil
 import com.yang.kotlinmvvmsample.R
 import com.yang.kotlinmvvmsample.data.model.Character
+import com.yang.kotlinmvvmsample.data.paging.PagingLoadStateAdapter
 import com.yang.kotlinmvvmsample.databinding.FragmentCharactersBinding
 import com.yang.kotlinmvvmsample.databinding.ItemCharacterBinding
 import com.yang.kotlinmvvmsample.ui.adapter.CharacterAdapter
@@ -21,10 +23,14 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharactersVie
     override fun getVM(): CharactersViewModel = charactersViewModel
 
     override fun bindVM(binding: FragmentCharactersBinding, viewModel: CharactersViewModel) {
-        with(binding) {
-            characterAdapter = CharacterAdapter { itemCharacterBinding: ItemCharacterBinding, character: Character -> }
-            rvCharacters.adapter = characterAdapter
-        }
+        characterAdapter =
+            CharacterAdapter { itemCharacterBinding: ItemCharacterBinding, character: Character ->
+                LogUtil.d("onCharactor=${character.id}")
+            }
+        binding.rvCharacters.adapter = characterAdapter.withLoadStateHeaderAndFooter(
+            header = PagingLoadStateAdapter(characterAdapter),
+            footer = PagingLoadStateAdapter(characterAdapter)
+        )
 
         launchOnLifecycleScope {
             viewModel.charactersFlow.collectLatest { characterAdapter.submitData(it) }
