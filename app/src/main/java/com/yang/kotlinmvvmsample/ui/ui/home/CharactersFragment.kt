@@ -1,6 +1,7 @@
 package com.yang.kotlinmvvmsample.ui.ui.home
 
 import androidx.fragment.app.viewModels
+import androidx.paging.LoadState
 import com.yang.baselibs.base.BaseFragment
 import com.yang.baselibs.utils.LogUtil
 import com.yang.kotlinmvvmsample.R
@@ -31,9 +32,15 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharactersVie
             header = PagingLoadStateAdapter(characterAdapter),
             footer = PagingLoadStateAdapter(characterAdapter)
         )
+        binding.swipeRefresh.setOnRefreshListener { characterAdapter.refresh() }
 
         launchOnLifecycleScope {
             viewModel.charactersFlow.collectLatest { characterAdapter.submitData(it) }
+        }
+        launchOnLifecycleScope {
+            characterAdapter.loadStateFlow.collectLatest {
+                binding.swipeRefresh.isRefreshing = it.refresh is LoadState.Loading
+            }
         }
     }
 }
