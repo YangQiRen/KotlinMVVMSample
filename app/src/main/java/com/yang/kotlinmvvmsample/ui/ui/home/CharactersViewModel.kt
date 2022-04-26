@@ -21,9 +21,11 @@ class CharactersViewModel : BaseViewModel() {
         getAllCharacters()
     }
 
-    private fun getAllCharacters() = launchPagingAsync({
-        repository.getAllCharacters().cachedIn(viewModelScope)
-    }, {
-        charactersFlow = it
-    })
+    private fun getAllCharacters() {
+        launchPagingAsync({
+            repository.getAllCharacters().cachedIn(viewModelScope)
+        }, {
+            charactersFlow = it
+        })
+    }
 }
