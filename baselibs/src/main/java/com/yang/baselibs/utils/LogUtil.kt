@@ -1,60 +1,44 @@
 package com.yang.baselibs.utils
 
+import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.yang.baselibs.config.AppConfig
 
 object LogUtil {
 
     private var debug = AppConfig.debug
-
-    fun i(tag: String, content: String) {
-        if (debug) {
-            Logger.i(tag, content)
-        }
+    init {
+        Logger.addLogAdapter(AndroidLogAdapter())
     }
 
     fun i(content: String) {
-        i(AppConfig.TAG, content)
-    }
-
-    fun v(tag: String, content: String) {
         if (debug) {
-            Logger.v(tag, content)
+            Logger.i(content)
         }
     }
 
     fun v(content: String) {
-        v(AppConfig.TAG, content)
-    }
-
-    fun d(tag: String, content: String) {
         if (debug) {
-            Logger.d(tag, content)
+            Logger.v(content)
         }
     }
 
     fun d(content: String) {
-        d(AppConfig.TAG, content)
-    }
-
-    fun w(tag: String, content: String) {
         if (debug) {
-            Logger.w(tag, content)
+            Logger.d(content)
         }
     }
 
     fun w(content: String) {
-        w(AppConfig.TAG, content)
-    }
-
-    fun e(tag: String, content: String) {
         if (debug) {
-            Logger.e(tag, content)
+            Logger.w(content)
         }
     }
 
     fun e(content: String) {
-        e(AppConfig.TAG, content)
+        if (debug) {
+            Logger.e(content)
+        }
     }
 
 }
