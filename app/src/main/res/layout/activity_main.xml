@@ -105,6 +105,11 @@
             android:text="go to home page"
             android:textAllCaps="false" />
 
+        <TextView
+            android:id="@+id/tvNetworkStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Network status：Unavailable"/>
     </LinearLayout>
 
 </layout>

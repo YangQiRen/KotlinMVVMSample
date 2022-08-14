@@ -10,6 +10,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.yang.baselibs.base.BaseActivity
 import com.yang.baselibs.base.BaseViewModel
+import com.yang.baselibs.utils.ConnectivityObserver
+import com.yang.baselibs.utils.NetworkConnetivityObserver
 import com.yang.kotlinmvvmsample.R
 import com.yang.kotlinmvvmsample.databinding.ActivityHomeBinding
 
@@ -30,6 +32,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseViewModel>() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
     }
 
     companion object {

@@ -10,20 +10,29 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.yang.baselibs.base.BaseActivity
 import com.yang.baselibs.ext.setOnSingleClickListener
 import com.yang.baselibs.ext.showToast
 import com.yang.baselibs.ext.visible
 import com.yang.baselibs.ext.visibleOrGone
+import com.yang.baselibs.utils.ConnectivityObserver
+import com.yang.baselibs.utils.NetworkConnetivityObserver
 import com.yang.baselibs.utils.SharedPreferencesUtils
 import com.yang.kotlinmvvmsample.R
 import com.yang.kotlinmvvmsample.databinding.ActivityMainBinding
 import com.yang.kotlinmvvmsample.ui.HomeActivity
 import com.yang.kotlinmvvmsample.util.hasPermissions
 import com.yang.kotlinmvvmsample.widget.LoadingDialog
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
+
+    // 網路觀察者
+    private lateinit var connectivityObserver: ConnectivityObserver
+
     // permissions
     private val permissionList = arrayOf(
         Manifest.permission.CAMERA,
@@ -76,6 +85,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
      */
     private fun initView() {
         setStatusBar(true, ContextCompat.getColor(this, android.R.color.transparent), true)
+        // 初始化網路觀察者
+        connectivityObserver = NetworkConnetivityObserver(applicationContext)
+        connectivityObserver.observe().onEach {
+            binding.tvNetworkStatus.text = "Network state：$it"
+        }.launchIn(lifecycleScope)
     }
 
     /**
