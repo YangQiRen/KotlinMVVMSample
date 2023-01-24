@@ -2,7 +2,7 @@
 buildscript {
     ext {
         // global variables
-        kotlin_version = '1.6.10'
+        kotlin_version = '1.6.21'
 
         // local variables (use def)
         def appcompat_version = '1.4.1'
@@ -100,7 +100,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.0'
+        classpath 'com.android.tools.build:gradle:7.4.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
